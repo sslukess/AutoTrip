@@ -64,4 +64,19 @@
 .main .result {
   font-weight: bold;
   margin-top: 40px;
+  
+}
+
+
+.system {
+  background-color: #10a37f;
+  padding: 4px;
+  margin: 4px;
+}
+
+.user {
+  background-color: #353740;
+  color: #fff;
+  padding: 4px;
+  margin: 4px;
 }

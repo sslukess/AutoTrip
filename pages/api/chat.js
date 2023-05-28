@@ -15,23 +15,28 @@ export default async function (req, res) {
     return;
   }
 
-  const animal = req.body.animal || '';
-  if (animal.trim().length === 0) {
+  const chatHistory = req.body.chatHistory || '';
+  if (chatHistory.length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid animal",
+        message: "ERROR - prompt is required",
       }
     });
     return;
   }
 
+  console.log('THE CHAT HISTORY SENT IS: ', chatHistory);
+
   try {
-    const completion = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: generatePrompt(animal),
+    const chatReponse = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: chatHistory,
       temperature: 0.6,
     });
-    res.status(200).json({ result: completion.data.choices[0].text });
+
+    console.log('THE CHAT RESPONSE IS: ', chatReponse.data.choices);
+
+    res.status(200).json({ result: chatReponse.data.choices[0].message.content });
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
@@ -46,17 +51,4 @@ export default async function (req, res) {
       });
     }
   }
-}
-
-function generatePrompt(animal) {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Suggest three names for an animal that is a superhero.
-
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: ${capitalizedAnimal}
-Names:`;
-}
+};
