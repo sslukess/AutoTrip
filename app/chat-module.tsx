@@ -66,8 +66,12 @@ export default function ChatApp({ initalPropmt, className }) {
       alert(error.message);
     }
 
+    // clear user input 
+    setUserInput('');
+
     // set loading false
     setLoading(false);
+
   }
 
   return (
