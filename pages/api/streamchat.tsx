@@ -20,13 +20,13 @@ export default async function (req: Request): Promise<Response> {
   const payload: OpenAIStreamPayload = {
     model: "gpt-3.5-turbo",
     messages: chatHistory,
-    temperature: 0.7,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
-    max_tokens: 1000,
+    temperature: 0.2,
+    // top_p: 1,
+    // frequency_penalty: 0,
+    // presence_penalty: 0,
+    max_tokens: 500,
     stream: true,
-    n: 1,
+    // n: 1,
   };
 
   const stream = await OpenAIStream(payload);
