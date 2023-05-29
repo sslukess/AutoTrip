@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
 
-export default function ChatApp({ initalPropmt }) {
+export default function ChatApp({ initalPropmt, className }) {
   // App Controls
   const [loading, setLoading] = useState(false);
   const [started, setStarted] = useState(false);
@@ -75,7 +75,7 @@ export default function ChatApp({ initalPropmt }) {
   }
 
   return (
-    <div>
+    <div className={className}>
       {/* Start button */}
       {!started && <button onClick={(e) => {
         setStarted(true);
@@ -85,7 +85,7 @@ export default function ChatApp({ initalPropmt }) {
 
 
       {/* Once started, run the below content */}
-      {started && <div>
+      {started && <div className={styles.chatwidget}>
         <div className={styles.result}>
 
 
@@ -95,7 +95,7 @@ export default function ChatApp({ initalPropmt }) {
             if (index === 0) return;
 
             return (
-              <div key={index} className={item.role === 'system' ? styles.system : styles.user}>
+              <div key={index} className={item.role === 'system' ? styles.system + ' ' + styles.chatbox : styles.user + ' ' + styles.chatbox}>
 
                 {item.content}
 
@@ -105,7 +105,7 @@ export default function ChatApp({ initalPropmt }) {
         </div>
 
 
-        {loading && <p className='system'>Talking to OpenAI API...</p>}
+        {loading && <p className='system'>... The chatbot is speaking ...</p>}
 
         {!loading &&
           <div>

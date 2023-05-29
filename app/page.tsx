@@ -9,7 +9,7 @@ export default function Page() {
     <main className={styles.main}>
       <h1>tumbleWorld AutoTrip</h1>
 
-      <ChatApp initalPropmt={generateInitialPrompt()} />
+      <ChatApp className={styles.chatapp} initalPropmt={generateInitialPrompt()} />
 
     </main>
   );
