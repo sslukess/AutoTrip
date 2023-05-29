@@ -54,7 +54,8 @@
   opacity: 1;
 }
 .main input[type="submit"],
-.startbutton {
+.startbutton,
+.bookinglink {
   padding: 12px 0;
   color: #fff;
   background-color: #10a37f;

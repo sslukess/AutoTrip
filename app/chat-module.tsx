@@ -96,10 +96,24 @@ export default function ChatApp({ initalPropmt, className }) {
               <div key={index} className={item.role === 'system' ? styles.system + ' ' + styles.chatbox : styles.user + ' ' + styles.chatbox}>
                 
 
-
                 {item.content.split('\n').map((str, index) => {
-                console.log(index)
-                return <p key={index}>{str}</p>})}
+                const expression = /(www\.google\.com\/search\?q=[a-z+]{1,500})/gi;
+                const regex = new RegExp(expression);
+
+                // Replacing raw Google URLs with an <a> tag. s
+                const cleanStrArray = str.split(regex).map((urlCandidateString) => {
+                      if (regex.test(urlCandidateString)) {
+                        return <a href={`https://${urlCandidateString}`} target="_blank" className={styles.bookinglink}> click me</a>
+                      } else {
+                        return urlCandidateString
+                      }   
+                })
+                
+                return <p>{cleanStrArray}</p>;
+
+                //return <p key={index}>{str}</p>
+                
+                })}
 
               </div>
             )
@@ -107,7 +121,7 @@ export default function ChatApp({ initalPropmt, className }) {
         </div>
 
 
-        {loading && <p className='system'>... The chatbot is speaking ...</p>}
+        {loading && <p className='system'>... tumbleWorld AutoTrip is thinking ...</p>}
 
         {!loading &&
           <div>
