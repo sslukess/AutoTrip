@@ -66,11 +66,6 @@ export default function ChatApp({ initalPropmt, className }) {
       alert(error.message);
     }
 
-    console.log('CHAT HISTORY', chatHistory)
-
-    // add response to chat history as a system user 
-    console.log(chatHistory)
-
     // set loading false
     setLoading(false);
   }
@@ -82,14 +77,12 @@ export default function ChatApp({ initalPropmt, className }) {
         setStarted(true);
         onSubmit(e);
 
-      }} id='start-button'>Start</button>}
+      }} className={styles.startbutton}>Start</button>}
 
 
       {/* Once started, run the below content */}
       {started && <div className={styles.chatwidget}>
         <div className={styles.result}>
-
-
 
           {chatHistory.map((item, index) => {
 
@@ -97,8 +90,12 @@ export default function ChatApp({ initalPropmt, className }) {
 
             return (
               <div key={index} className={item.role === 'system' ? styles.system + ' ' + styles.chatbox : styles.user + ' ' + styles.chatbox}>
+                
 
-                {item.content.split('\n').map(str => <p key={item.index}>{str}</p>)}
+
+                {item.content.split('\n').map((str, index) => {
+                console.log(index)
+                return <p key={index}>{str}</p>})}
 
               </div>
             )

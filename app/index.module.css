@@ -54,7 +54,7 @@
   opacity: 1;
 }
 .main input[type="submit"],
-#start-button {
+.startbutton {
   padding: 12px 0;
   color: #fff;
   background-color: #10a37f;
@@ -62,6 +62,11 @@
   border-radius: 4px;
   text-align: center;
   cursor: pointer;
+}
+
+.startbutton {
+  width: 320px;
+  margin-bottom: 24px;
 }
 .main .result {
   font-weight: bold;
