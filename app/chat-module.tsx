@@ -5,38 +5,14 @@ import { useState } from "react";
 import styles from "./index.module.css";
 
 export default function ChatApp({ initalPropmt }) {
-  const [userInput, setUserInput] = useState('');
-  const [chatHistory, setChatHistory] = useState([initalPropmt]);
-  const [result, setResult] = useState();
+  // App Controls
   const [loading, setLoading] = useState(false);
   const [started, setStarted] = useState(false);
 
-  // data fetching
-const getChat = async (chatHistory) => {
-  try {
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ chatHistory: chatHistory }),
-      cache: 'no-store',
-    });
-
-    const data = await response.json();
-
-    if (response.status !== 200) {
-      throw data.error || new Error(`Request failed with status ${response.status}`);
-    }
-
-    return data;
-
-  } catch (error) {
-    // Consider implementing your own error handling logic here
-    console.error(error);
-    alert(error.message);
-  }
-};
+  // Chat Elements 
+  const [userInput, setUserInput] = useState('');
+  const [response, setResponse] = useState<String>("");
+  const [chatHistory, setChatHistory] = useState([initalPropmt]);
 
   async function onSubmit(event) {
 
@@ -50,55 +26,88 @@ const getChat = async (chatHistory) => {
 
     // update the chat history with the user input
     setChatHistory(promptToSend);
+    console.log('attempting to contact streamchat')
 
-    const latestChatVerson = await getChat(promptToSend);
+    try {
+      const response = await fetch("/api/streamchat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ chatHistory: promptToSend }),
+        cache: 'no-store',
+      });
 
-      // set the result
-      setResult(latestChatVerson.result);
-      // add response to chat history as a system user 
-      setChatHistory([...promptToSend, { 'role': "system", 'content': latestChatVerson.result }]);
+      // This data is a ReadableStream
+      const data = response.body;
+      if (!data) {
+        return;
+      }
 
-    //set loading false
+      const reader = data.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      let result = "";
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunkValue = decoder.decode(value);
+        result += chunkValue;
+        setResponse((prev) => prev + chunkValue);
+
+        // add response to chat history as a system user 
+        setChatHistory([...promptToSend, { 'role': "system", 'content': result }]);
+      }
+
+    } catch (error) {
+      // Consider implementing your own error handling logic here
+      console.error(error);
+      alert(error.message);
+    }
+
+    // add response to chat history as a system user 
+    // setChatHistory([...promptToSend, { 'role': "system", 'content': response }]);
+    console.log(chatHistory)
+
+    // set loading false
     setLoading(false);
   }
 
   return (
     <div>
-        {/* Start button */}
-        {!started && <button onClick={(e) => {
-          setStarted(true);
-          onSubmit(e); 
+      {/* Start button */}
+      {!started && <button onClick={(e) => {
+        setStarted(true);
+        onSubmit(e);
 
-        }} id='start-button'>Start</button>}
-
-
-        {/* Once started, run the below content */}
-        {started && <div>
-          <div className={styles.result}>
-            {chatHistory.map((item, index) => {
-
-              if (index === 0) return;
-
-              const splitContent = item.content.split('\n');
-
-              return (
-                <div key={index} className={item.role === 'system' ? styles.system : styles.user}>
-
-                  {splitContent.map((line, index) => {
-                    return (
-                      <p key={index}>{line}</p>
-                    )
-                  })}
-
-                </div>
-              )
-            })}
-          </div>
+      }} id='start-button'>Start</button>}
 
 
-          {loading && <p className='system'>Talking to OpenAI API...</p>}
+      {/* Once started, run the below content */}
+      {started && <div>
+        <div className={styles.result}>
 
-          {!loading &&
+
+
+          {chatHistory.map((item, index) => {
+
+            if (index === 0) return;
+
+            return (
+              <div key={index} className={item.role === 'system' ? styles.system : styles.user}>
+
+                {item.content}
+
+              </div>
+            )
+          })}
+        </div>
+
+
+        {loading && <p className='system'>Talking to OpenAI API...</p>}
+
+        {!loading &&
           <div>
             <form onSubmit={onSubmit}>
 
@@ -114,10 +123,10 @@ const getChat = async (chatHistory) => {
             </form>
 
           </div>
-          }
-
-        </div>
         }
+
+      </div>
+      }
 
     </div>
 
