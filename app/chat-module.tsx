@@ -66,8 +66,9 @@ export default function ChatApp({ initalPropmt, className }) {
       alert(error.message);
     }
 
+    console.log('CHAT HISTORY', chatHistory)
+
     // add response to chat history as a system user 
-    // setChatHistory([...promptToSend, { 'role': "system", 'content': response }]);
     console.log(chatHistory)
 
     // set loading false
@@ -97,7 +98,7 @@ export default function ChatApp({ initalPropmt, className }) {
             return (
               <div key={index} className={item.role === 'system' ? styles.system + ' ' + styles.chatbox : styles.user + ' ' + styles.chatbox}>
 
-                {item.content}
+                {item.content.split('\n').map(str => <p key={item.index}>{str}</p>)}
 
               </div>
             )
