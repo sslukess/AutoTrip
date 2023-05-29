@@ -120,7 +120,6 @@ export default function ChatApp({ initalPropmt, className }) {
 
                 onChange={(e) => setUserInput(e.target.value)}
               />
-              <label htmlFor="userInput">The current user input is: <em>{userInput}</em></label>
               <input type="submit" value="Send" />
             </form>
 
