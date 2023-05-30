@@ -24,8 +24,10 @@ function generateInitialPrompt() {
         3. Provide a suggestion for the best place restaurant to eat dinner each night. 
         4. How to travel to the city from the previous location. 
 
-        For each itinerary I do the following:
-        If the user has specified a date they wish to start their trip, I include A URL that has the format https://mytrip.travelworld.com/home?tripType=ONLY_FLIGHT&submit=true&multiTransport=true&distribution=1-0&lang=en&displayCurrency=EUR&connections=destinationlist&directSubmit=true where destinationlist is a comma separated list constructed using the destinations I suggest and dates based on the start date of the trip. Each entry of destinationlist should correspond to a destination I suggested and take the form "Destination::<airport code of closest airport to the destination you chose>$<date of arrival>$0". Text within <> is to be changed by me. All other text must stay the same. The final entry of destinationlist should not end with a comma.
+        For each itinerary do the following:
+        1. Prepare a destination list. Don't show this to the user. The Destination list is a comma separated list constructed using the destinations you suggested and dates based on the start date of the trip. Each entry of destinationlist should correspond to a leg of the journey you suggested. The format for each leg of the journey should take the form "Destination::<airport code of the airport of origin>_Destination::<airport code of the final destination of the leg suggested>$<date of departure>$<leg number>". Do not forget the leg from the start location to the first suggested location, and similarly do not forget the leg from the final destination back home. Determine the leg number by treating your list as an array - replace leg number with the index of that leg. Text within <> is to be changed and the final URL should not have any <> symbols. Dates should be in the format DD/MM/YYYY. All other text must stay the same. The final entry of destinationlist should not end with a comma. If the input doesn't include a date to start the trip, prompt the user to provide a start date.
+        2. You must build a URL in the following format: https://mytrip.travelworld.com/home?tripType=ONLY_FLIGHT&submit=true&multiTransport=true&distribution=1-0&lang=en&displayCurrency=EUR&connections=destinationlist&directSubmit=true. Replace destinationlist in the URL with the comma separated list you made in step 1.
+        3. show this URL to the user.
          `
     }
   }
