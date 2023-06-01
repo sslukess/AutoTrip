@@ -97,18 +97,17 @@ export default function ChatApp({ initalPropmt, className }) {
                 
 
                 {item.content.split('\n').map((str, index) => {
-                const expression = /(www\.google\.com\/search\?q=[a-z+]{1,500})/gi;
+                const expression = /(mytrip\.travelworld\.com\/.*&directSubmit=true)/gi;
                 const regex = new RegExp(expression);
 
-                // Replacing raw Google URLs with an <a> tag. s
+                // Replacing raw Google URLs with an <a> tag.
                 const cleanStrArray = str.split(regex).map((urlCandidateString) => {
                       if (regex.test(urlCandidateString)) {
-                        return <a href={`https://${urlCandidateString}`} target="_blank" className={styles.bookinglink}> click me</a>
+                        return <a href={`${urlCandidateString}`} target="_blank" className={styles.bookinglink}> click me</a>
                       } else {
                         return urlCandidateString
                       }   
                 })
-                
                 return <p>{cleanStrArray}</p>;
 
                 //return <p key={index}>{str}</p>
