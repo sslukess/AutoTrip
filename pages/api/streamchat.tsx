@@ -17,8 +17,10 @@ export default async function (req: Request): Promise<Response> {
     return new Response("No chatHistory in the request", { status: 400 });
   }
 
+  // Fine tuned model name: davinci:ft-personal:test1-2023-06-21-06-23-44
+
   const payload: OpenAIStreamPayload = {
-    model: "gpt-3.5-turbo",
+    model: "davinci:ft-personal:test1-2023-06-21-06-23-44",
     messages: chatHistory,
     temperature: 0.2,
     // top_p: 1,
