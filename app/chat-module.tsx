@@ -95,7 +95,6 @@ export default function ChatApp({ initalPropmt, className }) {
             return (
               <div key={index} className={item.role === 'system' ? styles.system + ' ' + styles.chatbox : styles.user + ' ' + styles.chatbox}>
                 
-
                 {item.content.split('\n').map((str, index) => {
                 const expression = /(www\.google\.com\/search\?q=[a-z+]{1,500})/gi;
                 const regex = new RegExp(expression);
@@ -110,8 +109,6 @@ export default function ChatApp({ initalPropmt, className }) {
                 })
                 
                 return <p>{cleanStrArray}</p>;
-
-                //return <p key={index}>{str}</p>
                 
                 })}
 
@@ -121,12 +118,11 @@ export default function ChatApp({ initalPropmt, className }) {
         </div>
 
 
-        {loading && <p className='system'>... tumbleWorld AutoTrip is thinking ...</p>}
+        {loading && <p className={styles.thinking}>... AutoTrip is thinking ...</p>}
 
         {!loading &&
           <div>
             <form onSubmit={onSubmit}>
-
               <input
                 type="text"
                 name="userInput"

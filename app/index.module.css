@@ -1,25 +1,10 @@
-@font-face {
-  font-family: "ColfaxAI";
-  src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
-      format("woff2"),
-    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "ColfaxAI";
-  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
-    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
-  font-weight: bold;
-  font-style: normal;
-}
 .main,
 .main input {
   font-size: 16px;
   line-height: 24px;
   color: #353740;
-  font-family: "ColfaxAI", Helvetica, sans-serif;
 }
+
 .main {
   display: flex;
   flex-direction: column;
@@ -27,16 +12,31 @@
   justify-content: center;
   padding-top: 60px;
 }
-.main .icon {
-  width: 34px;
-}
-.main h3 {
+
+.main h1 {
   font-size: 32px;
   line-height: 40px;
   font-weight: bold;
-  color: #202123;
+  color: #F5E2C8;
   margin: 16px 0 40px;
+  /* floating animation  */
+  animation: float 2.3s ease-in-out infinite;
 }
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+    transform: rotate(0deg);
+  }
+  
+}
+
 .main form {
   display: flex;
   flex-direction: column;
@@ -44,10 +44,10 @@
 }
 .main input[type="text"] {
   padding: 12px 16px;
-  border: 1px solid #10a37f;
+  border: 1px solid #F5E2C8;
   border-radius: 4px;
   margin-bottom: 24px;
-  outline-color: #10a37f;
+  outline-color: #F5E2C8;
 }
 .main ::placeholder {
   color: #8e8ea0;
@@ -57,8 +57,8 @@
 .startbutton,
 .bookinglink {
   padding: 12px 0;
-  color: #fff;
-  background-color: #10a37f;
+  color: #F5E2C8;
+  background-color: #1E2D24;
   border: none;
   border-radius: 4px;
   text-align: center;
@@ -68,10 +68,12 @@
 .startbutton {
   width: 320px;
   margin-bottom: 24px;
+  color: #F5E2C8;
 }
+
 .main .result {
   font-weight: bold;
-  margin-top: 40px;
+  margin-top: 20px;
   
 }
 
@@ -88,20 +90,29 @@
   min-width: 400px;
 }
 
-
 .system {
-  background-color: #10a37f;
+  background-color: #1E2D24;
+  color: #F5E2C8;
   padding: 4px;
   margin: 4px;
 }
 
+.thinking {
+  color: #F5E2C8;
+}
+
 .user {
-  background-color: #353740;
-  color: #fff;
+  background-color: #F5E2C8;
+  /* color: #fff; */
   padding: 4px;
   margin: 4px;
 }
 
 .chatbox {
   border-radius: 3px;
+}
+
+.screen {
+  height: 100%;
+  background-color: #fff;
 }
