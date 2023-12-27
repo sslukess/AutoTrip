@@ -132,13 +132,10 @@ export default function ChatApp({ initalPropmt, className }) {
               />
               <input type="submit" value="Send" />
             </form>
-
           </div>
         }
-
       </div>
       }
-
     </div>
 
   );
