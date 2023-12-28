@@ -1,44 +1,53 @@
-# OpenAI API Quickstart - Node.js example app
+# 🍎 AutoTrip
 
-This is an example pet name generator app used in the OpenAI API [quickstart tutorial](https://platform.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
+A chatbox who will sort out your European holiday.
 
-![Text box that says name my pet with an icon of a dog](https://user-images.githubusercontent.com/10623307/213887080-b2bc4645-7fdb-4dbd-ae42-efce00d0dc29.png)
+## 🍐 Table of Contents
 
+- [Project Title](#project-title)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Features](#features)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+  - [Contributing](#contributing)
+  - [License](#license)
 
-## Setup
+## 🥦 Introduction
 
-1. If you don’t have Node.js installed, [install it from here](https://nodejs.org/en/) (Node.js version >= 14.6.0 required)
+This application is a fun little chatbot born out of the OpenAI chat-gpt craze. This app is a dive into chat technology, network streaming and working with a ML model. It is built using NextJS (App router) and will hopefully give you good ideas about where to travel.
 
-2. Clone this repository
+## 🫑 Features
 
-3. Navigate into the project directory
+- Chatting 
+- Suggesting holiday plans in Europe
+- Providing links to book hotels 
+- Costing me money with OpenAI
 
-   ```bash
-   $ cd openai-quickstart-node
-   ```
+## 🥨 Getting Started
 
-4. Install the requirements
+1. Clone the repo 
+2. Install deps ( I use yarn, you could also use npm if you want. )
+3. add the .env file (details below)
+4. Run dev script (yarn dev/npm run dev) 
 
-   ```bash
-   $ npm install
-   ```
+### 🍌 Prerequisites
+ 
+- Docker
+- NodeJS
+- Yarn or npm
+- Web Browser
+- A brain
 
-5. Make a copy of the example environment variables file
+In addition, you will also need to add an .env file to the project root that contains your personal OpenAI Token: 
 
-   On Linux systems: 
-   ```bash
-   $ cp .env.example .env
-   ```
-   On Windows:
-   ```powershell
-   $ copy .env.example .env
-   ```
-6. Add your [API key](https://platform.openai.com/account/api-keys) to the newly created `.env` file
+OPENAI_API_KEY={your token here}
 
-7. Run the app
+## 🍍 Contributing 
 
-   ```bash
-   $ npm run dev
-   ```
+I mean, if you really want to open a PR, you can. I might even approve it! 
 
-You should now be able to access the app at [http://localhost:3000](http://localhost:3000)! For the full context behind this example app, check out the [tutorial](https://platform.openai.com/docs/quickstart).
+## 🫐 License
+
+Luke's Web Page © 2023 by sslukess is licensed under CC BY-NC-ND 4.0 
