@@ -17,7 +17,7 @@
   font-size: 32px;
   line-height: 40px;
   font-weight: bold;
-  color: #F5E2C8;
+  color: #268e9c;
   margin: 16px 0 40px;
   /* floating animation  */
   animation: float 2.3s ease-in-out infinite;
@@ -42,23 +42,26 @@
   flex-direction: column;
   width: 320px;
 }
+
 .main input[type="text"] {
   padding: 12px 16px;
-  border: 1px solid #F5E2C8;
+  border: 1px solid #003049;
   border-radius: 4px;
   margin-bottom: 24px;
-  outline-color: #F5E2C8;
+  outline-color: #003049;
 }
+
 .main ::placeholder {
   color: #8e8ea0;
   opacity: 1;
 }
+
 .main input[type="submit"],
 .startbutton,
 .bookinglink {
   padding: 12px 0;
-  color: #F5E2C8;
-  background-color: #1E2D24;
+  color: #003049;
+  background-color: #dda15e;
   border: none;
   border-radius: 4px;
   text-align: center;
@@ -68,7 +71,7 @@
 .startbutton {
   width: 320px;
   margin-bottom: 24px;
-  color: #F5E2C8;
+  color: #003049;
 }
 
 .main .result {
@@ -91,18 +94,18 @@
 }
 
 .system {
-  background-color: #1E2D24;
-  color: #F5E2C8;
+  background-color: #dda15e;
+  color: #003049;
   padding: 4px;
   margin: 4px;
 }
 
 .thinking {
-  color: #F5E2C8;
+  color: #003049;
 }
 
 .user {
-  background-color: #F5E2C8;
+  background-color: #003049;
   /* color: #fff; */
   padding: 4px;
   margin: 4px;

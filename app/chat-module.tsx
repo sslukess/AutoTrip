@@ -1,6 +1,4 @@
 'use client';
-
-import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
 
@@ -61,7 +59,6 @@ export default function ChatApp({ initalPropmt, className }) {
       }
 
     } catch (error) {
-      // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
     }
