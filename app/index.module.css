@@ -105,7 +105,7 @@
 }
 
 .user {
-  background-color: #003049;
+  border: 1px solid #003049;
   /* color: #fff; */
   padding: 4px;
   margin: 4px;
